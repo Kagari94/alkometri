@@ -1,6 +1,10 @@
 import {useState} from 'react'
 import './App.css';
-
+/*Olen itse sitä mieltä että tuntien ja pullojen kirjoittaminen on järkevämpää kuin 
+  se että voi valmiista numeroista valita.
+  Tosin en myöskään ole varma miten saisin select/optionin tuottamaan uuseita ei kovakoodattuja valintoja.
+  Nodessa on varmaan hieman erillainen logiikka kun perus js'ssässä koska perus js asia eivät näytä toimivan.
+*/
 function App() {
   const [gender, setGender] = useState('male')
   const [weight, setWeight] = useState(0)
@@ -19,17 +23,30 @@ function App() {
     let gramsLeft = grams - (burning * time)
 
     if(gender === "male"){
-      result = grams / (weight * 0.7)
-    }else{
-      result = grams / (weight * 0.6)
+      setResult(gramsLeft / (weight * 0.7))
+    }else if(gender === "female"){
+      console.log(grams)
+      console.log(weight)
+      setResult(gramsLeft / (weight * 0.6))
     }
-
-    setResult(result)
+  //Esimerkiksi tämä functio ei tuo edes yhtä text nimistä valintaa
+  /*function addBottle(){
+    let select = document.getElementById("bottles")
+    let option = document.createElement("option")
+    option.text = "text"
+    select.add(option)
+    
+  }
+  <select id="bottles" onChange={addBottle}>
+            <option></option>
+  </select>
+  */
 
   }
 
   return (
     <div id="container">
+      <h3>Alkometri</h3>
       <form onSubmit={calculate}>
         <div>
           <label>Weight</label>
@@ -44,9 +61,11 @@ function App() {
           <input value={time} onChange={e => setTime(e.target.value)}/>
         </div>
         <div>
-          <label>Gender</label>
-          <input type="radio" name="gender" value="male" defaultChecked onChange={(e => setGender(e.target.value))}><label>Male</label></input>
-          <input type="radio" name="gender" value="female" defaultChecked onChange={(e => setGender(e.target.value))}><label>Female</label></input>
+          <label>Gender:<br></br></label>
+          <label id="radio">Male</label>
+          <input type="radio" name="gender" value="male" defaultChecked onChange={(e => setGender(e.target.value))}></input>
+          <label id="radio">Female</label>
+          <input type="radio" name="gender" value="female" onChange={(e => setGender(e.target.value))}></input>
         </div>
         <div>
           <label>Result</label>
