@@ -1,10 +1,6 @@
 import {useState} from 'react'
 import './App.css';
-/*Olen itse sitä mieltä että tuntien ja pullojen kirjoittaminen on järkevämpää kuin 
-  se että voi valmiista numeroista valita.
-  Tosin en myöskään ole varma miten saisin select/optionin tuottamaan uuseita ei kovakoodattuja valintoja.
-  Nodessa on varmaan hieman erillainen logiikka kun perus js'ssässä koska perus js asia eivät näytä toimivan.
-*/
+
 function App() {
   const [gender, setGender] = useState('male')
   const [weight, setWeight] = useState(0)
@@ -12,7 +8,6 @@ function App() {
   const [time, setTime] = useState(0)
   const [result, setResult] = useState(0)
 
-  const numbers = new Array(24).fill(null).map((_,i) => i+1)
   
   function calculate(e){
     e.preventDefault()
@@ -29,18 +24,6 @@ function App() {
       console.log(weight)
       setResult(gramsLeft / (weight * 0.6))
     }
-  //Esimerkiksi tämä functio ei tuo edes yhtä text nimistä valintaa
-  /*function addBottle(){
-    let select = document.getElementById("bottles")
-    let option = document.createElement("option")
-    option.text = "text"
-    select.add(option)
-    
-  }
-  <select id="bottles" onChange={addBottle}>
-            <option></option>
-  </select>
-  */
 
   }
 
